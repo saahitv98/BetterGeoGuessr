@@ -14,6 +14,8 @@ public class GameController
 	
 	private int level = 1;
         public final int MAX_LEVEL = 10;
+        
+        int totalScore = 0;
 	
 	public GameController(int level)
 	{
@@ -23,11 +25,14 @@ public class GameController
                 this.window1 = new JFrame("dont worry about it");
                 this.window1.setContentPane(this.window1Panel);
                 this.window1.setSize(500, 500);
+                this.window1.addWindowListener(new KillOnClickX());
                 
                 this.window2Panel = new Window2Panel(this);
                 this.window2 = new JFrame("saahit suxz");
                 this.window2.setContentPane(this.window2Panel);
                 this.window2.setSize(564,808);
+                this.window2.setResizable(false);
+                this.window2.addWindowListener(new KillOnClickX());
                 
                 this.window1.setVisible(true);
                 this.window2.setVisible(true);
@@ -52,4 +57,31 @@ public class GameController
 	{
 	    return level;
 	}
+        
+        /**
+         * Called when the map is clicked.
+         */
+        public void onMapClicked(int x, int y)
+        {
+            int score = LocationData.scoreFromClick(this.level, x, y);
+            
+            JDialog dialog = new JDialog(this.window2, "Score");
+            dialog.add(new JLabel("You scored " + score + "!"));
+            dialog.setSize(100, 100);
+            dialog.setVisible(true);
+            
+            this.totalScore += score;
+            
+            if (this.level == MAX_LEVEL)
+            {
+                JDialog finalDialog = new JDialog(this.window2, "Score");
+                finalDialog.add(new JLabel("Your final score was " + totalScore + "!"));
+                finalDialog.setSize(100, 100);
+                finalDialog.setVisible(true);
+                System.exit(0);
+            } else
+            {
+                this.setLevel(this.level + 1);
+            }
+        }
 }

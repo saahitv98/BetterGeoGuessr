@@ -25,6 +25,7 @@ public class Window2Panel extends JPanel implements MouseListener
             System.err.println("ERROR: Can't open map image file");
             System.exit(80085);
         }
+        this.addMouseListener(this);
     }
     
     @Override public void paint(Graphics g)
@@ -36,7 +37,7 @@ public class Window2Panel extends JPanel implements MouseListener
     @Override
     public void mouseClicked(MouseEvent e)
     {
-        
+        this.gc.onMapClicked(e.getX(), e.getY());
     }
 
     @Override public void mousePressed(MouseEvent e) { }
