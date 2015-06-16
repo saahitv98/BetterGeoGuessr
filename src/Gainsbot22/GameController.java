@@ -22,13 +22,13 @@ public class GameController
             if (level > 0 && level <= MAX_LEVEL)
             {
                 this.window1Panel = new Window1Panel("Level " + level, new File(level + ".jpg"));
-                this.window1 = new JFrame("dont worry about it");
+                this.window1 = new JFrame("pictures");
                 this.window1.setContentPane(this.window1Panel);
                 this.window1.setSize(500, 500);
                 this.window1.addWindowListener(new KillOnClickX());
                 
                 this.window2Panel = new Window2Panel(this);
-                this.window2 = new JFrame("saahit suxz");
+                this.window2 = new JFrame("map");
                 this.window2.setContentPane(this.window2Panel);
                 this.window2.setSize(564,808);
                 this.window2.setResizable(false);
@@ -47,6 +47,7 @@ public class GameController
 	
 	public void setLevel(int level)
 	{
+            this.level++;
             window1Panel.setLevelName("Level " + level);
             window1Panel.setPicture(new File(level + ".jpg"));
             this.window1.setContentPane(this.window1Panel);
