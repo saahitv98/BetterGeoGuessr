@@ -12,7 +12,7 @@ public class Window1Panel extends JPanel
 	 * 
 	 */
 	private static final long serialVersionUID = 7044385053527846210L;
-	private JLabel levelNamePane;
+	public JLabel levelNamePane;
 	private Image img;
 	private Image resizedImg;
 	private ImagePane imagePane;
@@ -52,23 +52,23 @@ public class Window1Panel extends JPanel
 	
 	public void setLevelName(String text)
 	{
-		this.levelNamePane.setText(text);
-		this.repaint();
+            this.levelNamePane.setText(text);
+            this.repaint();
 	}
 	
 	private class ImagePane extends JComponent
 	{
-		/**
-		 * 
-		 */
-		private static final long serialVersionUID = 4576027401606150918L;
+            /**
+             * 
+             */
+            private static final long serialVersionUID = 4576027401606150918L;
 
-		@Override
-		public void paint(Graphics g)
-		{
-			resizedImg = img.getScaledInstance(g.getClipBounds().width, g.getClipBounds().height, Image.SCALE_DEFAULT);
-			super.paint(g);
-			g.drawImage(resizedImg, 0, 0, null);
-		}
+            @Override
+            public void paint(Graphics g)
+            {
+                resizedImg = img.getScaledInstance(g.getClipBounds().width, g.getClipBounds().height, Image.SCALE_DEFAULT);
+                super.paint(g);
+                g.drawImage(resizedImg, 0, 0, null);
+            }
 	}
 }

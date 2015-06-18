@@ -33,6 +33,7 @@ public class GameController
                 this.window2.setSize(564,808);
                 this.window2.setResizable(false);
                 this.window2.addWindowListener(new KillOnClickX());
+                this.window2.setLocation(510, 0);
                 
                 this.window1.setVisible(true);
                 this.window2.setVisible(true);
@@ -47,7 +48,7 @@ public class GameController
 	
 	public void setLevel(int level)
 	{
-            this.level++;
+            this.level = level;
             window1Panel.setLevelName("Level " + level);
             window1Panel.setPicture(new File(level + ".jpg"));
             this.window1.setContentPane(this.window1Panel);
@@ -69,20 +70,20 @@ public class GameController
             JDialog dialog = new JDialog(this.window2, "Score");
             dialog.add(new JLabel("You scored " + score + "!"));
             dialog.setSize(100, 100);
+            dialog.setLocation(1000,0);
             dialog.setVisible(true);
             
             this.totalScore += score;
             
             if (this.level == MAX_LEVEL)
             {
-                JDialog finalDialog = new JDialog(this.window2, "Score");
-                finalDialog.add(new JLabel("Your final score was " + totalScore + "!"));
-                finalDialog.setSize(100, 100);
-                finalDialog.setVisible(true);
-                System.exit(0);
+                this.window2Panel.removeMouseListener(window2Panel);
+                
             } else
             {
                 this.setLevel(this.level + 1);
             }
+                this.window1Panel.levelNamePane.setText(this.window1Panel.levelNamePane.getText() + " score: " + this.totalScore);
+
         }
 }
